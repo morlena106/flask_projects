@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funny Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="{{ url_for('static', filename='js/surprise.js') }}" defer></script>
+</head>
+<body>
+    <h1 class="funny-title">😄 Funny Form Challenge 🦄</h1>
+    <form action="/submit" method="POST" class="funny-form">
+        <label for="name">Your Super Cool Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="color">Your Favorite Color:</label>
+        <input type="color" id="color" name="color"><br><br>
+
+        <label for="profession">Your Profession:</label>
+        <select id="profession" name="profession">
+            <option value="developer">Developer</option>
+            <option value="designer">Designer</option>
+            <option value="manager">Manager</option>
+        </select><br><br>
+
+        <p>Your Hobbies:</p>
+        <label><input type="checkbox" name="hobbies" value="books"> Books</label>
+        <label><input type="checkbox" name="hobbies" value="sports"> Sports</label>
+        <label><input type="checkbox" name="hobbies" value="games"> Games</label><br><br>
+
+        <p>Your Level:</p>
+        <label><input type="radio" name="level" value="beginner" required> Beginner</label>
+        <label><input type="radio" name="level" value="advanced"> Advanced</label><br><br>
+
+        <button type="submit" class="funny-button">🚀 Let's Go!</button>
+        <button type="button" class="funny-surprise">Click for Surprise</button>
+    </form>
+</body>
+</html>

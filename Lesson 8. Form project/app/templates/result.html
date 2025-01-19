@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submission Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1 class="funny-title">Thank You, {{ name }}! 🎉</h1>
+    <p>Your favorite color is: <span style="color: {{ color }}">{{ color }}</span>.</p>
+    <p>Your profession is: {{ profession }}.</p>
+    <p>Your hobbies: {{ hobbies | join(', ') }}.</p>
+    <p>Your level: {{ level }}.</p>
+    <a href="/" class="funny-button">Go back to form</a>
+</body>
+</html>
