@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Agent Details</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Agent: {{ agent.code_name }}</h1>
+    <p><strong>Phone:</strong> {{ agent.phone }}</p>
+    <p><strong>Email:</strong> {{ agent.email }}</p>
+    <p><strong>Access Level:</strong> {{ agent.access_level }}</p>
+    <br>
+    <a href="{{ url_for('edit_agent', id=agent.id) }}">Edit Agent</a> |
+    <a href="{{ url_for('delete_agent', id=agent.id) }}" onclick="return confirm('Delete this agent?');">Delete Agent</a> |
+    <a href="{{ url_for('index') }}">Back to Dashboard</a>
+</body>
+</html>

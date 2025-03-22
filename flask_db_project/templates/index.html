@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Secret Agent Dashboard</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 20px; }
+      .dark { background-color: #333; color: #eee; }
+      .toggle-button { cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; margin-bottom: 10px; display: inline-block; }
+      .agent { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; }
+      a { text-decoration: none; color: blue; }
+    </style>
+    <script>
+      function toggleDark() {
+          document.body.classList.toggle('dark');
+      }
+    </script>
+</head>
+<body>
+    <div class="toggle-button" onclick="toggleDark()">Toggle Dark Mode</div>
+    <h1>Secret Agent Dashboard</h1>
+
+    <!-- Форма фильтрации по уровню доступа -->
+    <form method="get" action="/">
+        <label for="access_level">Filter by Access Level:</label>
+        <select name="access_level" id="access_level">
+            <option value="">All</option>
+            <option value="Секретно">Секретно</option>
+            <option value="Совершенно секретно">Совершенно секретно</option>
+        </select>
+        <button type="submit">Filter</button>
+    </form>
+
+    <hr>
+    <!-- Вывод flash-сообщений -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+          {% for msg in messages %}
+          <li>{{ msg }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <!-- Список агентов -->
+    {% for agent in agents %}
+    <div class="agent">
+        <h2>{{ agent.code_name }}</h2>
+        <p><strong>Phone:</strong> {{ agent.phone }}</p>
+        <p><strong>Email:</strong> {{ agent.email }}</p>
+        <p><strong>Access Level:</strong> {{ agent.access_level }}</p>
+        <a href="{{ url_for('agent_detail', id=agent.id) }}">View Details</a> |
+        <a href="{{ url_for('edit_agent', id=agent.id) }}">Edit</a> |
+        <a href="{{ url_for('delete_agent', id=agent.id) }}" onclick="return confirm('Delete this agent?');">Delete</a> |
+        <a href="{{ url_for('send_message', id=agent.id) }}">Send Urgent Message</a>
+    </div>
+    {% endfor %}
+
+    <hr>
+    <a href="{{ url_for('add_agent') }}">Add New Agent</a> |
+    <a href="{{ url_for('delete_all') }}" onclick="return confirm('WARNING: This will delete ALL agents!');">Secret Mode: Delete All Agents</a>
+</body>
+</html>
